@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Django tutorial</title>
+    <style>table, th, td {
+  border: 1px solid black;
+}</style>
+</head>
+<body>
+<div class="container mt-5">
+
+<form class = "col-6 mx-auto card p-3 shadow-ig" method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  <h2> Update Recipe</h2>
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Recipe name</label>
+    <input name="recipe_name" value="{{ recipe.recipe_name }}" required type="text" class="form-control">
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Recipe description</label>
+    <textarea class = "form-control" name="recipe_description" required>{{ recipe.recipe_description }}</textarea>
+  </div>
+
+    <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Recipe image </label>
+    <input  name="recipe_image" type="file" class="form-control">
+  </div>
+
+  <button type="submit" class="btn btn-primary">Update Recipe</button>
+</form>
+
+
+
+</div>
+
+</body>
+</html>
