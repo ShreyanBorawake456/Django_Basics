@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
-
+from django.db.models import Q
 
 
 # Create your views here.
@@ -119,11 +119,14 @@ def register_page(request):
 def get_students(request):
     queryset = Student.objects.all() # sabhi students ko fetch kiya
 
-    
+    if request.GET.get('search'):
+        search = request.GET.get('search') # search ke basis pe data ko filter kiya
+        queryset = queryset.filter(Q(student_name__icontains = search) | Q(department__department_name__icontains = search) | Q(student_id__student_id__icontains = search)  ) # student_name me search term ko check kiya aur filter kiya
+
     paginator = Paginator(queryset, 25)  # Show 25 contacts per page.
 
     page_number = request.GET.get("page", 1)  # agar page number nahi hai to default 1 set kar diya
-    page_obj = paginator.get_page(page _number)
+    page_obj = paginator.get_page(page_number)
     return render(request, 'report/students.html', {'queryset': page_obj})
 
     print(page_obj)  # page_obj me current page ka data hai, isse template me use kar sakte hai
