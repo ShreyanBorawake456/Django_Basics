@@ -118,10 +118,12 @@ def register_page(request):
 
 def get_students(request):
     queryset = Student.objects.all() # sabhi students ko fetch kiya
+
+    
     paginator = Paginator(queryset, 25)  # Show 25 contacts per page.
 
     page_number = request.GET.get("page", 1)  # agar page number nahi hai to default 1 set kar diya
-    page_obj = paginator.get_page(page_number)
+    page_obj = paginator.get_page(page _number)
     return render(request, 'report/students.html', {'queryset': page_obj})
 
     print(page_obj)  # page_obj me current page ka data hai, isse template me use kar sakte hai
