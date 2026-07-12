@@ -133,3 +133,7 @@ def get_students(request):
 
 def success_page(request):
     return render(request, 'success_page.html')
+
+def see_marks(request, student_id):
+    queryset = SubjectMarks.objects.filter(student__student_id__student_id=student_id) 
+    return render(request, 'report/see_marks.html ', {'queryset': queryset})

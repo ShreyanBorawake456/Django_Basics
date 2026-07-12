@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block start %}
+<div class="container mt-5 mb-5">
+
+    
+<table class="mt-10 table table-striped ">
+      <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Student Name</th>
+      <th scope="col">Marks</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    {% for marks in queryset %}
+    <tr>
+      <th scope="row">{{ forloop.counter }}</th>
+      <td><b>{{marks.subject.subject_name}}</b></td>
+      <td>{{ marks.marks }}</td>
+    </tr>
+    {% endfor %}
+
+  </tbody>
+</table>
+
+
+</div>
+{% endblock %}
